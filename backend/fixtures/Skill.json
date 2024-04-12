@@ -1,0 +1,74 @@
+[
+    {
+        "model": "main.skill",
+        "pk": 1,
+        "fields": {
+            "name": "Python",
+            "description": "Знание языка Python"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 2,
+        "fields": {
+            "name": "С#",
+            "description": ".NET 7"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 3,
+        "fields": {
+            "name": "Web-Design",
+            "description": "...."
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 4,
+        "fields": {
+            "name": "Figma",
+            "description": "Умение исп. полный функционал Figma"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 5,
+        "fields": {
+            "name": "Баскетбол",
+            "description": "Закидываю трешки и делаю данки"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 6,
+        "fields": {
+            "name": "ЛитрБол",
+            "description": "3 кружки пива, как святая вода - исцеляет"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 7,
+        "fields": {
+            "name": "Слушать",
+            "description": "Умение слушать"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 8,
+        "fields": {
+            "name": "Слышать",
+            "description": "умение слышать"
+        }
+    },
+    {
+        "model": "main.skill",
+        "pk": 9,
+        "fields": {
+            "name": "Английский",
+            "description": "B1-C2 lvl"
+        }
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "model": "main.task",
+        "pk": 1,
+        "fields": {
+            "name": "Сделать матан",
+            "description": "что-то",
+            "type_integer": 1,
+            "subject_integer": 4
+        }
+    },
+    {
+        "model": "main.task",
+        "pk": 2,
+        "fields": {
+            "name": "Что-то",
+            "description": "что-то о что-то",
+            "type_integer": 2,
+            "subject_integer": 2
+        }
+    }
+]

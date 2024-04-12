@@ -1,0 +1,70 @@
+[
+    {
+        "model": "main.club",
+        "pk": 1,
+        "fields": {
+            "name": "Хакатон",
+            "description": "частие в хакатонах",
+            "link": "https://gagarinhack.ru/",
+            "schedule": "что-то",
+            "hobbies": [
+                1,
+                3,
+                4
+            ],
+            "skills": [
+                1,
+                2,
+                3,
+                4,
+                6,
+                7,
+                8,
+                9
+            ],
+            "events": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "main.club",
+        "pk": 2,
+        "fields": {
+            "name": "Шахмат",
+            "description": "ставим мат",
+            "link": "https://www.chess.com/ru",
+            "schedule": "что-то",
+            "hobbies": [
+                5
+            ],
+            "skills": [
+                6,
+                7,
+                8
+            ],
+            "events": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "main.club",
+        "pk": 3,
+        "fields": {
+            "name": "Спорт",
+            "description": "что-то",
+            "link": "https://gagarinhack.ru/",
+            "schedule": "что-то",
+            "hobbies": [
+                2
+            ],
+            "skills": [
+                5
+            ],
+            "events": [
+                1
+            ]
+        }
+    }
+]

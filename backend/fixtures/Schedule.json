@@ -1,0 +1,12 @@
+[
+    {
+        "model": "main.schedule",
+        "pk": 1,
+        "fields": {
+            "name": "идз математика",
+            "description": "слделать номер 23 стр 56\r\nсдать до конца семетра",
+            "type_integer": 2,
+            "type_integer_id": 4
+        }
+    }
+]

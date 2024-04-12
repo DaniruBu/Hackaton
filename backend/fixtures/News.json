@@ -1,0 +1,58 @@
+[
+    {
+        "model": "main.news",
+        "pk": 1,
+        "fields": {
+            "name": "Лекция от Тинькоф банка",
+            "description": "крутая лекция",
+            "hobbies": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "main.news",
+        "pk": 2,
+        "fields": {
+            "name": "Матч по баскету",
+            "description": "играет команда А и Б",
+            "hobbies": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "main.news",
+        "pk": 3,
+        "fields": {
+            "name": "Сбер лекция по вебу",
+            "description": "Сбер лекция по вебу оч крутая",
+            "hobbies": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "main.news",
+        "pk": 4,
+        "fields": {
+            "name": "Алгоритмы",
+            "description": "Разбираемся в алгоритмах",
+            "hobbies": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "main.news",
+        "pk": 5,
+        "fields": {
+            "name": "Новый API сайта",
+            "description": "смотри чего нового в обновлении beta 2.2.1",
+            "hobbies": [
+                1,
+                4
+            ]
+        }
+    }
+]
