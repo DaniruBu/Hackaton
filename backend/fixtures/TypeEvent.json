@@ -1,0 +1,16 @@
+[
+    {
+        "model": "main.typeevent",
+        "pk": 1,
+        "fields": {
+            "name": "Мероприятие"
+        }
+    },
+    {
+        "model": "main.typeevent",
+        "pk": 2,
+        "fields": {
+            "name": "Хакатон"
+        }
+    }
+]

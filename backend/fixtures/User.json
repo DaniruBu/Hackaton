@@ -1,0 +1,64 @@
+[
+    {
+        "model": "main.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$Jqs7lRh9Otc3RuQ4AlGUdM$IX8rcEJOHughEQStREXY0AlnbvnLl+sVN5EXbcVNP94=",
+            "last_login": "2024-04-12T14:38:53.467Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-04-12T14:38:26.409Z",
+            "gender": "",
+            "age": null,
+            "groups": "",
+            "direction": "",
+            "communication_group": "",
+            "military_enlistment_office": "",
+            "date_of_birth": null,
+            "nonresident": false,
+            "user_permissions": [],
+            "hobbies": [],
+            "type_event": [],
+            "type_importance": []
+        }
+    },
+    {
+        "model": "main.user",
+        "pk": 2,
+        "fields": {
+            "password": "hhhh",
+            "last_login": "2024-04-12T15:27:02Z",
+            "is_superuser": false,
+            "username": "dsdfsdfsdf",
+            "first_name": "First",
+            "last_name": "Last",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-04-12T15:23:29Z",
+            "gender": "Оно",
+            "age": 228,
+            "groups": "Хакатон",
+            "direction": "я такой",
+            "communication_group": "Шахматы",
+            "military_enlistment_office": "Тутный",
+            "date_of_birth": "2024-04-12",
+            "nonresident": true,
+            "user_permissions": [],
+            "hobbies": [
+                1
+            ],
+            "type_event": [
+                1
+            ],
+            "type_importance": [
+                1
+            ]
+        }
+    }
+]

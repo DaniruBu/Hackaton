@@ -1,0 +1,38 @@
+[
+    {
+        "model": "main.place",
+        "pk": 1,
+        "fields": {
+            "name": "Библеотека",
+            "description": "...",
+            "type_integer": 1
+        }
+    },
+    {
+        "model": "main.place",
+        "pk": 2,
+        "fields": {
+            "name": "Кворкинг",
+            "description": "тихое место",
+            "type_integer": 1
+        }
+    },
+    {
+        "model": "main.place",
+        "pk": 3,
+        "fields": {
+            "name": "Кафешка",
+            "description": "вкусное кофе",
+            "type_integer": 2
+        }
+    },
+    {
+        "model": "main.place",
+        "pk": 4,
+        "fields": {
+            "name": "Киношка",
+            "description": "что-то",
+            "type_integer": 3
+        }
+    }
+]

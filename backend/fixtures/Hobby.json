@@ -1,0 +1,59 @@
+[
+    {
+        "model": "main.hobby",
+        "pk": 1,
+        "fields": {
+            "name": "IT",
+            "description": "что-то об IT",
+            "skills": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "main.hobby",
+        "pk": 2,
+        "fields": {
+            "name": "Баскетбол",
+            "description": "люблю играть в баскет",
+            "skills": [
+                5
+            ]
+        }
+    },
+    {
+        "model": "main.hobby",
+        "pk": 3,
+        "fields": {
+            "name": "Веб-дизайн",
+            "description": "люблю дизайнить",
+            "skills": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "main.hobby",
+        "pk": 4,
+        "fields": {
+            "name": "ПО",
+            "description": "что-то",
+            "skills": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "main.hobby",
+        "pk": 5,
+        "fields": {
+            "name": "настолка",
+            "description": "что-то",
+            "skills": [
+                7,
+                8
+            ]
+        }
+    }
+]
