@@ -1,0 +1,35 @@
+* {
+    line-height: 1;
+}
+
+.headerTask {
+    margin: 0 auto;
+    width: 328px;
+    height: 45px;
+    background-color: #404040;
+    border-radius: 15px 15px 0 0;
+    color: white;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    margin-top: 15px;
+}
+
+.mainTaskComponent {
+    max-width: 328px;
+    background-color: #ffff;
+    border-radius: 0 0 15px 15px;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px 25px;
+}
+
+.mainText {
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
