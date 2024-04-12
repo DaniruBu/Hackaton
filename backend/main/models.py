@@ -25,7 +25,7 @@ class Club(models.Model):
     hobbies = models.ManyToManyField("Hobby")
     skills = models.ManyToManyField("Skill")
     link = models.URLField()
-    events = models.ManyToManyField("Event")
+    events = models.ManyToManyField("Events")
     schedule = models.TextField()
 
 
@@ -48,8 +48,8 @@ class Events(models.Model):
     skills = models.ManyToManyField("Skill")
     start_date = models.DateField()
     end_date = models.DateField()
-    type_importance = models.ForeignKey(TypeImportance, on_delete=models.CASCADE)
-    type_event = models.ForeignKey(TypeEvent, on_delete=models.CASCADE)
+    type_importance = models.ForeignKey(TypeImportance, on_delete=models.CASCADE, related_name="events")
+    type_event = models.ForeignKey(TypeEvent, on_delete=models.CASCADE, related_name="events")
     social_link = models.URLField()
 
     def __str__(self):
@@ -66,7 +66,7 @@ class User(AbstractUser):
     hobbies = models.ManyToManyField(Hobby)
     gender = models.CharField(max_length=30)
     age = models.IntegerField()
-    group = models.TextField()
+    groups = models.TextField()
     direction = models.TextField()
     communication_group = models.TextField()
     military_enlistment_office = models.TextField()
