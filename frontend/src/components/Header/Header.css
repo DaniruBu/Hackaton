@@ -2,14 +2,20 @@
 
 header {
     padding: 0;
-    margin: 0 0 77px 0;
     font-family: 'Montserrat', 'sans-serif';
-    height: 100px;
+    height: 50px;
     width: 100%;
     display: flex;
-    background-color: #5F5F5F;
+    background-color: #916EC2;
     align-items: center;
     justify-content: center;
     font-size: 30px;
     font-weight: 900;
+    gap: 100px;
+
+}
+
+.buttonsHeader {
+    text-decoration: none;
+    color: white;
 }

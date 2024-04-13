@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.mainDivCaht {
+    display: flex;
+}
+
+.leftContainer {
+    width: 829px;
+    height: 1030px;
+    background-image: url("../../backForChats.svg");
+    background-size: cover;
+    padding: 10px;
+
+}
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+.rightContainer {
+    width: 1091px;
+    height: 1030px;
+    background-color: #4A2380;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.imputContainer {
+    width: 1091px;
+    height: 92px;
+    background-color: #7642BD;
+    position: fixed; /* Или position: absolute; */
+    bottom: 0;
+    border-radius: 20px 20px 0 0;
+    padding: 26px 43.5px;
+}
+
+.input {
+    height: 50px;
+    width: 1015px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    font-size: 21px;
+    font-weight: 700;
+    padding: 0 20px;
+    color: white;
+}
+
+.input::placeholder {
+    color: #ACACAC;
+}
+
+.input:focus {
+    outline: none;
+}
+
