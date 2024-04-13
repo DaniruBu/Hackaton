@@ -2,7 +2,9 @@ from django.urls import path, include
 from rest_framework import routers
 
 from . import views
-
+router = routers.DefaultRouter()
+router.register(r'', views.ChatViewSet)
+#router.register(r'route', views.GetOptimalRouteChat)
 urlpatterns = [
-    path('', views.ChatViewSet.as_view())
+    path('', include(router.urls))
 ]
