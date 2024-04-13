@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from . import views
 
 urlpatterns = [
-    path('path/', views.roomk, name='path'),
-    path('', views.room, name='chat'),
+    path('', views.ChatViewSet.as_view())
 ]

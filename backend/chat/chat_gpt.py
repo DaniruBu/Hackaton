@@ -17,13 +17,6 @@ def generate_response(messages):
     return completion.choices[0].message.content
 
 
-def add_message_chat_gpt(message, role):
-    result = {
-        "role": role,
-        "content": message
-    }
-    return result
-
 
 def get_prompt_message(id):
     file = open("backend/chat/prompt/prompts.json", "r", encoding="utf-8")
