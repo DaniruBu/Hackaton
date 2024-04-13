@@ -4,7 +4,7 @@ from django.db import models
 
 class Skill(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -12,8 +12,8 @@ class Skill(models.Model):
 
 class Hobby(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
-    skills = models.ManyToManyField("Skill")
+    description = models.TextField(null=True, blank=True)
+    skills = models.ManyToManyField("Skill", blank=True, related_name='hobby')
 
     def __str__(self):
         return self.name
@@ -22,11 +22,11 @@ class Hobby(models.Model):
 class Club(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
-    hobbies = models.ManyToManyField("Hobby")
-    skills = models.ManyToManyField("Skill")
-    link = models.URLField()
-    events = models.ManyToManyField("Events")
-    schedule = models.TextField()
+    hobbies = models.ManyToManyField("Hobby", blank=True)
+    skills = models.ManyToManyField("Skill", blank=True)
+    link = models.URLField(blank=True)
+    events = models.ManyToManyField("Events", blank=True)
+    schedule = models.TextField(blank=True)
 
 
 class TypeImportance(models.Model):
@@ -40,17 +40,19 @@ class TypeImportance(models.Model):
 class TypeEvent(models.Model):
     name = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.name
 
 class Events(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
-    hobbies = models.ManyToManyField("Hobby")
-    skills = models.ManyToManyField("Skill")
-    start_date = models.DateField()
-    end_date = models.DateField()
-    type_importance = models.ForeignKey(TypeImportance, on_delete=models.CASCADE, related_name="events")
-    type_event = models.ForeignKey(TypeEvent, on_delete=models.CASCADE, related_name="events")
-    social_link = models.URLField()
+    description = models.TextField(null=True, blank=True)
+    hobbies = models.ManyToManyField("Hobby", blank=True)
+    skills = models.ManyToManyField("Skill", blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    type_importance = models.ForeignKey(TypeImportance, on_delete=models.CASCADE, related_name="events", null=True, blank=True)
+    type_event = models.ForeignKey(TypeEvent, on_delete=models.CASCADE, related_name="events", null=True, blank=True)
+    social_link = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -61,7 +63,8 @@ class News(models.Model):
     description = models.TextField()
     hobbies = models.ManyToManyField("Hobby")
 
-
+    def __str__(self):
+        return self.name
 class User(AbstractUser):
     hobbies = models.ManyToManyField(Hobby)
     gender = models.CharField(max_length=30)
