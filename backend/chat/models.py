@@ -1,5 +1,6 @@
 from django.db import models
 
 
-class CountMessages(models.Model):
-    count = models.IntegerField(default=0)
+class MessageGPT(models.Model):
+    role = models.CharField(max_length=30)
+    text = models.TextField()
