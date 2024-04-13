@@ -191,6 +191,7 @@ class TaskSerializer(serializers.ModelSerializer):
         instance.name = validated_data.get('name', instance.name)
         instance.description = validated_data.get('description', instance.description)
         instance.type_integer = validated_data.get('type_integer', instance.type_ininteger)
+        instance.type_integer = validated_data.get('type_integer', instance.type_integer)
         instance.subject_integer = validated_data.get('subject_integer', instance.subject_integer)
         instance.save()
         return instance
