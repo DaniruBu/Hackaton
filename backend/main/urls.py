@@ -11,6 +11,7 @@ router.register(r'type-event', views.TypeEventViewSet)
 router.register(r'event', views.EventViewSet)
 router.register(r'news', views.NewsViewSet)
 router.register(r'place', views.PlaceViewSet)
+router.register("task", views.TaskViewSet)
 router.register(r'schedule', views.ScheduleViewSet)
 urlpatterns = [
     path('', include(router.urls)),
