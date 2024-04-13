@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-from chat.chat_gpt import get_prompt_message, add_message_chat_gpt, generate_response
-=======
+
+from .chat_gpt import get_prompt_message, generate_response
 import json
 
-from chat.chat_gpt import generate_response
-from chat.models import MessageGPT
->>>>>>> origin/topando/chat_gpt
+from .chat_gpt import generate_response
+from .models import MessageGPT
+
 
 
 def set_info_student(message, count):
@@ -16,12 +15,10 @@ def set_info_student(message, count):
     }]
     messages.append(add_message_chat_gpt(message, 'user'))
     return generate_response(messages)
-<<<<<<< HEAD
-=======
 
 
 def get_prompt_message():
-    file = open("backend/chat/prompt/prompts.json", "r", encoding="utf-8")
+    file = open("chat/prompt/prompts.json", "r", encoding="utf-8")
     data = json.load(file)
     file.close()
     result = data['prompt']
@@ -65,4 +62,3 @@ def check_prompt(message_user):
         return answer
     else:
         return "Неверный ввод"
->>>>>>> origin/topando/chat_gpt
