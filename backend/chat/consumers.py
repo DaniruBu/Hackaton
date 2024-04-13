@@ -1,26 +1,20 @@
 import json
-import time
+from channels.generic.websocket import AsyncWebsocketConsumer
+from .models import MessageGPT
+from .utils import check_prompt
 
-from channels.generic.websocket import WebsocketConsumer
+class ChatConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+        await self.send(text_data=json.dumps({"message": "Привет, я могу отвечать на твои вопросы\nДавай ты расскажешь о себе"}))
 
-from chat.utils import check_prompt
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard("chat", self.channel_name)
+        await MessageGPT.objects.all().delete()
 
-from chat.models import MessageGPT
-
-
-class ChatConsumer(WebsocketConsumer):
-    def connect(self):
-        self.accept()
-        self.send(text_data=json.dumps({"message": "Привет, я могу отвечать на твои вопросы\nДавай ты расскажешь о себе"}))
-
-    def disconnect(self, close_code):
-        MessageGPT.objects.all().delete()
-
-    def receive(self, text_data):
+    async def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json["message"]
-        self.send(text_data=json.dumps({"message": message}))
+        await self.send(text_data=json.dumps({"message": message}))
         answer = check_prompt(message)
-        self.send(text_data=json.dumps({"message": answer}))
-
-
+        await self.send(text_data=json.dumps({"message": answer}))
