@@ -126,3 +126,4 @@ AUTH_USER_MODEL = 'main.User'
 
 
 USER = "user"
+SYSTEM = "system"
