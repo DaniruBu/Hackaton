@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
 
-def room(request):
-    return render(request, "chat/room.html")
+def room(request, room_name):
+    return render(request, "chat/room.html", {"room_name": room_name})
+
+def roomk(request):
+    return render(request, "chat/room_path.html")

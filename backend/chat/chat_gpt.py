@@ -30,3 +30,10 @@ def get_prompt_message(id):
     data = json.load(file)
     prompts_message = data['prompt'][id]
     return prompts_message
+
+
+def get_prompt_path_message(id):
+    file = open("backend/chat/prompt/path_prompts.json", "r", encoding="utf-8")
+    data = json.load(file)
+    prompts_message = data['prompt'][id]
+    return prompts_message
