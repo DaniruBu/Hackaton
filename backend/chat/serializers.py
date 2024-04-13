@@ -1,7 +1,9 @@
-from rest_framework import serializers
+import time
+
+from rest_framework import serializers, viewsets
 
 from .models import *
-from .utils import check_prompt
+from .utils import check_prompt, get_prompt_message, get_hobby, sorting_event
 
 
 class ChatSerializer(serializers.ModelSerializer):
@@ -9,6 +11,39 @@ class ChatSerializer(serializers.ModelSerializer):
         model = MessageGPT
         fields = '__all__'
 
-    def create(self, validated_data):
-        answer = check_prompt(validated_data['text'])
-        return answer
+    def save(self, **kwargs):
+        if MessageGPT.objects.all().count() == 1 and check_prompt(self.validated_data['text'], 1) == '0':
+            MessageGPT.objects.all().delete()
+            MessageGPT.objects.create(
+                role="system",
+                text=get_prompt_message(0)
+            ).save()
+            return "Неверный ввод"
+
+        MessageGPT.objects.create(
+            role="user",
+            text=self.validated_data['text']
+        ).save()
+        time.sleep(3)
+        answer = check_prompt(self.validated_data['text'], 0)
+        MessageGPT.objects.create(
+            role="assistant",
+            text=answer
+        ).save()
+        if get_hobby(answer):
+            result = sorting_event()
+            return result
+        else:
+            return answer
+
+
+class GetOptimalRouteChatSerializer(serializers.Serializer):
+    description = serializers.CharField()
+
+    def save(self, **kwargs):
+        if RequestGetOptimalRouteChat.objects.all().count() == 0:
+            text = "Отправьте что вы видите"
+            RequestGetOptimalRouteChat.objects.create(
+                text=text
+            )
+            return text
