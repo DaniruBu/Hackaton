@@ -8,3 +8,18 @@ class MessageGPT(models.Model):
 
 class HobbyGPT(models.Model):
     name = models.CharField(max_length=30)
+
+
+class Vershina(models.Model):
+    description = models.ForeignKey("Des", on_delete=models.CASCADE)
+
+
+class Des(models.Model):
+    description = models.TextField()
+
+
+class Vetka(models.Model):
+    start = models.IntegerField()
+    end = models.IntegerField()
+    len = models.IntegerField()
+    description = models.ForeignKey(Des, on_delete=models.CASCADE)

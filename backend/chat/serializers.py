@@ -25,20 +25,16 @@ class ChatSerializer(serializers.ModelSerializer):
             text=self.validated_data['text']
         ).save()
         time.sleep(3)
-        try:
-            answer = check_prompt(self.validated_data['text'], 0)
-            MessageGPT.objects.create(
-                role="assistant",
-                text=answer
-            ).save()
-            if get_hobby(answer):
-                result = sorting_event()
-                return result
-            else:
-                return answer
-        except Exception:
-            return "Chat GPT is dead"
-
+        answer = check_prompt(self.validated_data['text'], 0)
+        MessageGPT.objects.create(
+            role="assistant",
+            text=answer
+        ).save()
+        if get_hobby(answer):
+            result = sorting_event()
+            return result
+        else:
+            return answer
 
 class GetOptimalRouteChatViewSet(viewsets.ModelViewSet):
     class Meta:
