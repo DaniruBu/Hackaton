@@ -1,0 +1,22 @@
+.headerTaskColumnPlan {
+    min-width: 368px;
+    height: 66px;
+    background-color: #CECECE;
+    border-radius: 10px 10px 0 0;
+    font-size: 25px;
+    font-weight: 900;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.columnPlanTask {
+    padding-top: 1px;
+    max-width: 368px;
+    background-color: #B6B6B6;
+    border-radius: 0 0 10px 10px;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+

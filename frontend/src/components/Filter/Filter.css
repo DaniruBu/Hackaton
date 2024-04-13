@@ -1,0 +1,11 @@
+.FilterButton {
+    text-align: center;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 30px;
+    margin-bottom: 31px;
+}
