@@ -10,6 +10,9 @@ class HobbyGPT(models.Model):
     name = models.CharField(max_length=30)
 
 
+class RequestGetOptimalRouteChat(models.Model):
+    text = models.TextField()
+
 class Vershina(models.Model):
     description = models.ForeignKey("Des", on_delete=models.CASCADE)
 

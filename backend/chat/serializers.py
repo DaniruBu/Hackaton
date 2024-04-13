@@ -36,6 +36,14 @@ class ChatSerializer(serializers.ModelSerializer):
         else:
             return answer
 
-class GetOptimalRouteChatViewSet(viewsets.ModelViewSet):
-    class Meta:
-        pass
+
+class GetOptimalRouteChatSerializer(serializers.Serializer):
+    description = serializers.CharField()
+
+    def save(self, **kwargs):
+        if RequestGetOptimalRouteChat.objects.all().count() == 0:
+            text = "Отправьте что вы видите"
+            RequestGetOptimalRouteChat.objects.create(
+                text=text
+            )
+            return text
