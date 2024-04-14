@@ -1,17 +1,9 @@
 
-from .chat_gpt import get_prompt_message, generate_response
 import json
 
-<<<<<<< HEAD
-from chat.chat_gpt import generate_response
-from chat.models import HobbyGPT
-from chat.models import MessageGPT
->>>>>>> origin/topando/chat_gpt
-=======
 from .chat_gpt import generate_response
+from .models import HobbyGPT
 from .models import MessageGPT
-
->>>>>>> origin/Daryutin/frontChats
 
 
 def set_info_student(message, count):
@@ -23,14 +15,8 @@ def set_info_student(message, count):
     messages.append(add_message_chat_gpt(message, 'user'))
     return generate_response(messages)
 
-
-<<<<<<< HEAD
 def get_prompt_message(prompt_id):
-    file = open("backend/chat/prompt/prompts.json", "r", encoding="utf-8")
-=======
-def get_prompt_message():
     file = open("chat/prompt/prompts.json", "r", encoding="utf-8")
->>>>>>> origin/Daryutin/frontChats
     data = json.load(file)
     file.close()
     result = data['prompt'][prompt_id]
@@ -66,11 +52,6 @@ def get_hobby(answer):
                 HobbyGPT.objects.create(name=hobby).save()
         return True
     else:
-<<<<<<< HEAD
-        return "Неверный ввод"
-<<<<<<< HEAD
->>>>>>> origin/topando/chat_gpt
-=======
         return False
 
 
@@ -100,6 +81,3 @@ def sorting_event():
             result_list += event + "\n"
     return result_list
 
->>>>>>> origin/topando/chat_gpt
-=======
->>>>>>> origin/Daryutin/frontChats
