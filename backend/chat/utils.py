@@ -81,3 +81,13 @@ def sorting_event():
             result_list += event + "\n"
     return result_list
 
+
+def get_analytical_prompt(user_point, all_point):
+    ret = f"Нам дан текст '{user_point}' какой из перечисленных текстов больше всего похож на него: ' "
+    for point in all_point:
+        ret += f"{point['id']} {point['description']}; "
+    return ret + "Верни это данные JSON {'id': 'description'}"
+
+
+def get_es_prompt(description):
+    return f"Если в этом сообщении '{description}' положительный ответ то 1, иначе 0"

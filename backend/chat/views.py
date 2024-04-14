@@ -6,6 +6,8 @@ from rest_framework import mixins
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
+from chat.models import RequestGetOptimalRouteChat
+
 
 class ChatViewSet(mixins.CreateModelMixin,
                   mixins.DestroyModelMixin,
@@ -29,6 +31,7 @@ class ChatViewSet(mixins.CreateModelMixin,
 
 
 class GetOptimalRouteChat(mixins.CreateModelMixin,
+                          mixins.DestroyModelMixin,
                           GenericViewSet):
     queryset = Vershina.objects.all()
     serializer_class = GetOptimalRouteChatSerializer
@@ -37,4 +40,8 @@ class GetOptimalRouteChat(mixins.CreateModelMixin,
         serializer = GetOptimalRouteChatSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         answer = serializer.save()
-        return Response(answer)
+        return Response({'answer': answer})
+
+    def delete(self, request, *args, **kwargs):
+        RequestGetOptimalRouteChat.objects.all().delete()
+        return Response("Ok")
