@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 from chat.chat_gpt import get_prompt_message
 from chat.models import MessageGPT
 from chat.models import Vershina
 from chat.serializers import ChatSerializer, GetOptimalRouteChatSerializer
 from rest_framework import mixins
+=======
+from .models import MessageGPT
+from .serializers import ChatSerializer
+from rest_framework import generics
+>>>>>>> origin/Daryutin/frontChats
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -18,6 +24,7 @@ class ChatViewSet(mixins.CreateModelMixin,
         serializer.is_valid(raise_exception=True)
         answer = serializer.save()
         return Response({"answer": answer})
+<<<<<<< HEAD
 
     def delete(self, request, *args, **kwargs):
         MessageGPT.objects.all().delete()
@@ -38,3 +45,5 @@ class GetOptimalRouteChat(mixins.CreateModelMixin,
         serializer.is_valid(raise_exception=True)
         answer = serializer.save()
         return Response(answer)
+=======
+>>>>>>> origin/Daryutin/frontChats
