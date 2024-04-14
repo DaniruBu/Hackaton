@@ -13,11 +13,8 @@ class HobbyGPT(models.Model):
 class RequestGetOptimalRouteChat(models.Model):
     text = models.TextField()
 
+
 class Vershina(models.Model):
-    description = models.ForeignKey("Des", on_delete=models.CASCADE)
-
-
-class Des(models.Model):
     description = models.TextField()
 
 
@@ -25,4 +22,4 @@ class Vetka(models.Model):
     start = models.IntegerField()
     end = models.IntegerField()
     len = models.IntegerField()
-    description = models.ForeignKey(Des, on_delete=models.CASCADE)
+    description = models.TextField()
