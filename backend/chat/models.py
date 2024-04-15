@@ -23,3 +23,13 @@ class Vetka(models.Model):
     end = models.IntegerField()
     len = models.IntegerField()
     description = models.TextField()
+
+
+class State(models.Model):
+    state = models.IntegerField(default=0)
+    start_point = models.TextField(null=True, blank=True)
+    end_point = models.TextField(null=True, blank=True)
+
+
+class StateMessanger(models.Model):
+    state = models.IntegerField(default=0)

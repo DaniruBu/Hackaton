@@ -1,5 +1,5 @@
 .idea
-.env
+backend/.env
 vevn
 __pycache__/
 .DS_Store

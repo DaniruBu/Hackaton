@@ -1,11 +1,9 @@
 import queue
-import time
 
 from rest_framework import serializers
 
 from .chat_gpt import generate_response
 from .models import *
-from .utils import check_prompt, get_prompt_message, get_hobby, sorting_event, get_analytical_prompt, get_es_prompt
 
 
 class ppppppp:
@@ -45,107 +43,87 @@ class ppppppp:
         return list(reversed(ret))
 
 
-class ChatSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MessageGPT
-        fields = '__all__'
+class ChatSerializer(serializers.Serializer):
+    description = serializers.CharField()
 
     def save(self, **kwargs):
-        if MessageGPT.objects.all().count() == 1 and check_prompt(self.validated_data['text'], 1) == '0':
-            MessageGPT.objects.all().delete()
-            MessageGPT.objects.create(
-                role="system",
-                text=get_prompt_message(0)
-            ).save()
-            return "Неверный ввод"
-
-        MessageGPT.objects.create(
-            role="user",
-            text=self.validated_data['text']
-        ).save()
-        time.sleep(3)
-        answer = check_prompt(self.validated_data['text'], 0)
-        MessageGPT.objects.create(
-            role="assistant",
-            text=answer
-        ).save()
-        if get_hobby(answer):
-            result = sorting_event()
-            return result
-        else:
-            return answer
-
-
-state = 0
-start_point = None
-start_point_id = 0
-end_point = None
-end_point_id = 0
+        text = None
+        obj = StateMessanger.objects.get_or_create()[0]
+        if obj.state == 0:
+            text = "Составьте о себе короткий текст"
+        if obj.state == 1:
+            prompt = get_check_info_prompt(self.validated_data['description'])
+            messages = get_request_chat_gpt(prompt, 'user')
+            if int(generate_response(messages)):
+                prompt = get_info_prompt(self.validated_data['description'])
+                messages = get_request_chat_gpt(prompt, 'user')
+                print(generate_response(messages))
+            else:
+                text = "Составьте о себе короткий текст"
+        obj.save()
+        return text
 
 
 class GetOptimalRouteChatSerializer(serializers.Serializer):
     description = serializers.CharField()
 
     def save(self, **kwargs):
-        global state, start_point_id, end_point_id
         text = None
-
-        if state == 0:
-            text = "Опишите где вы находитесь"
-        elif state == 1:
-            text = "Это то где вы находитесь: "
-        elif state == 2:
-            text = "Опишите куда вам надо"
-        elif state == 3:
-            text = "Это то куда вам надо:  "
-
-        RequestGetOptimalRouteChat.objects.create(
-            text=text
-        )
-
-        if state % 2 != 0:
-            all_points = [
-                {
-                    "id": 1,
-                    "description": "Главный вход"
-                },
-                {
-                    "id": 2,
-                    "description": "Столовая"
-                }, {
-                    "id": 3,
-                    "description": "Окно"
-                },
-                {
-                    "id": 4,
-                    "description": "Раздевалка"
-                },
-
-            ]
-            messages = [{
-                'role': "system",
-                'content': get_analytical_prompt(self.validated_data['description'], all_points)}]
-            answer = generate_response(messages)
-            text += str(answer['id'])
-            state += 1
-            if state == 1:
-                start_point_id = int(answer['id'])
+        obj = State.objects.get_or_create(pk=1)
+        if obj[0].state == 0:
+            text = "Введите где вы находитесь"
+        if obj[0].state == 1:
+            description = self.validated_data['description']
+            obj[0].start_point = description
+            text = "Это то где вы находитесь: " + description + "?"
+        if obj[0].state == 2:
+            prompt = get_prompt_check_point(self.validated_data['description'])
+            messages = get_request_chat_gpt(prompt, 'user')
+            if int(generate_response(messages)):
+                text = "Введите куда вам нужно"
             else:
-                end_point_id = int(answer['id'])
-        else:
-            messages = [{
-                'role': "system",
-                'content': get_es_prompt(self.validated_data['description'])
-            }]
-            if generate_response(messages):
-                state += 1
-                if state == 5:
-                    res = []
-                    vetks = Vetka.objects.all()
-                    for vetk in vetks:
-                        res.append([vetk.start, vetk.end, vetk.len, vetk.description])
-                    obj = ppppppp()
-                    k = obj.bebebe(res, 1009999, start_point_id, end_point_id)
-                    for i in k:
-                        print(i)
+                text = "Введите где вы находитесь"
+                obj[0].state -= 2
+        if obj[0].state == 3:
+            description = self.validated_data['description']
+            obj[0].end_point = description
+            text = "Это то куда вам надо: " + description + "?"
+        if obj[0].state == 4:
+            prompt = get_prompt_check_point(self.validated_data['description'])
+            messages = get_request_chat_gpt(prompt, 'user')
+            if int(generate_response(messages)):
+                pass
+            else:
+                text = "Введите куда вам нужно"
+                obj[0].state -= 2
+
+        obj[0].state += 1
+        obj[0].save()
         return text
+
+
+def get_prompt_check_point(message):
+    text = f"Если в сообщении '{message}' полное согласие, ответь 1 иначе 0"
+    return text
+
+
+def get_request_chat_gpt(prompt, role):
+    messages = [{
+        'role': role,
+        'content': prompt
+    }]
+    return messages
+
+
+def get_check_info_prompt(message):
+    text = f"Если сообщение '{message}' это  информация о пользователе или о его увлечениях, ответь 1 иначе 0"
+    return text
+
+
+def get_info_prompt(message):
+    text = (f"'{message}' - проанализируй это сообщение по виду:"
+            f"Если в нем есть имя пользователя отправь JSON вида 'name': name, иначе JSON вида 'name': null"
+            f"Если в нем есть хобби пользователя отправь JSON вида 'hobby': [hobby, hobby], иначе 'hobby': null"
+            f"Если в нем есть то чем пользователь хотел бы заниматься отправь JSON вида 'dream': [dream, dream], иначе 'dream': null"
+            )
+    return text

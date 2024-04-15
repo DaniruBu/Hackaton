@@ -1,8 +1,11 @@
 import json
-
+import os
+from dotenv import load_dotenv
 from openai import OpenAI
 
-open_ai_token = "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"
+from config.settings import OPENAI
+
+open_ai_token = OPENAI
 client = OpenAI(
     api_key=open_ai_token,
 )

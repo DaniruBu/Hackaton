@@ -43,13 +43,10 @@ class HobbySerializer(serializers.ModelSerializer):
             self.instance.skills.remove(Skill.objects.filter(pk=skill).first())
         return self.instance
 
-
-class HobbyReadSerializer(serializers.ModelSerializer):
-    skills = SkillSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Hobby
-        fields = "__all__"
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['skills'] = SkillSerializer(instance.skills.all(), many=True).data
+        return rep
 
 
 class TypeImportanceSerializer(serializers.ModelSerializer):

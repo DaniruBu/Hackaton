@@ -19,19 +19,7 @@ class SkillViewSet(viewsets.ModelViewSet):
 
 class HobbyViewSet(viewsets.ModelViewSet):
     queryset = Hobby.objects.all()
-    serializer_class = HobbyReadSerializer
-
-    def create(self, request, *args, **kwargs):
-        serializer = HobbySerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def update(self, request, *args, **kwargs):
-        serializer = HobbySerializer(data=request.data, instance=self.get_object(), partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    serializer_class = HobbySerializer
 
     @action(detail=True, methods=['DELETE'])
     def delete_skills(self, request, pk=None):

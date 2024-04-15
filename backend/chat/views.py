@@ -1,12 +1,11 @@
 from chat.chat_gpt import get_prompt_message
 from chat.models import MessageGPT
+from chat.models import RequestGetOptimalRouteChat
 from chat.models import Vershina
 from chat.serializers import ChatSerializer, GetOptimalRouteChatSerializer
 from rest_framework import mixins
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-
-from chat.models import RequestGetOptimalRouteChat
 
 
 class ChatViewSet(mixins.CreateModelMixin,
